@@ -238,9 +238,9 @@ The result obtained from the deployed service is-
 
 The requests being sent to the model can be monitored through the Application Insights URL (If Application Insights are enabled) along with failed requests, time taken per request as well as the availability of the deployed service.
 
-![Application Insights]()
+![Application Insights](https://github.com/neha7598/azure-ml-capstone/blob/main/screenshots/Application%20Insights.png)
 
 
 ## Screen Recording
-The screen recording with the project walkthrough can be seen ![here](https://github.com/neha7598/azure-ml-capstone/blob/main/screenshots/Application%20Insights.png)
+The screen recording with the project walkthrough can be seen [here]()
 
