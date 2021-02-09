@@ -232,9 +232,9 @@ resp = requests.post(scoring_uri, input_data, headers=headers)
 print(resp.json())
 ```
 
-The result obtained from the deployed service is- 
+**The result obtained from the deployed service is- **
 
-![Result]()
+![Result](https://github.com/neha7598/azure-ml-capstone/blob/main/screenshots/Result.png)
 
 The requests being sent to the model can be monitored through the Application Insights URL (If Application Insights are enabled) along with failed requests, time taken per request as well as the availability of the deployed service.
 
