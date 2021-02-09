@@ -242,5 +242,5 @@ The requests being sent to the model can be monitored through the Application In
 
 
 ## Screen Recording
-The screen recording with the project walkthrough can be seen [here]()
+The screen recording with the project walkthrough can be seen [here](https://youtu.be/OUlqEsqebtE)
 
