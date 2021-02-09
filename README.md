@@ -64,31 +64,112 @@ automl_settings = {
 
 
 ### Results
-The model trained using AutoML searched for several algorithms to find which would perform best in this particular use case, several algorithms including LogisticRegression, SVM, Random Forest, MinMaxScaler, MaxAbsScaler, XGBoostClassifier, VotingEnsemble, etc were explored. The algorithm that performed the best was VotingEnsemble with an accuracy of 0.88694. AutoML automatically selected the best hyperparameters for the model training. AutoML automatically selects the algorithm and associated hyperparameters, the sampling policy, as well as the early stopping policy. It also selects algorithms that are blacklisted or won't work in that particular case (TensorFlowLinearClassifier and TensorFlowDNN in this case)
+The model trained using AutoML searched for several algorithms to find which would perform best in this particular use case, several algorithms including LogisticRegression, SVM, Random Forest, MinMaxScaler, MaxAbsScaler, XGBoostClassifier, VotingEnsemble, etc were explored. The algorithm that performed the best was VotingEnsemble with an accuracy of **0.88694**. AutoML automatically selected the best hyperparameters for the model training. AutoML automatically selects the algorithm and associated hyperparameters, the sampling policy, as well as the early stopping policy. It also selects algorithms that are blacklisted or won't work in that particular case (TensorFlowLinearClassifier and TensorFlowDNN in this case)
 
-*TODO* Remeber to provide screenshots of the `RunDetails` widget as well as a screenshot of the best model trained with it's parameters.
-The details of the AutoML run can be monitored using the RunDetails Widget
+**The details of the AutoML run can be monitored using the RunDetails Widget**
+
 ![Run Details](https://github.com/neha7598/azure-ml-capstone/blob/main/screenshots/AutoML-%20Run%20Details.png)
 
-Once the run has finished the summary of the run can be seen below- 
+
+**Once the run has finished the summary of the run can be seen below-**
+
 ![Run Completed](https://github.com/neha7598/azure-ml-capstone/blob/main/screenshots/AutoML-%20Run%20Summary.png)
 
-The best model details are shown below-
+
+**The best model details are shown below-**
+
 ![Best Model details](https://github.com/neha7598/azure-ml-capstone/blob/main/screenshots/AutoML-%20Best%20Model%20Summary.png)
 
 ![Best Model summary](https://github.com/neha7598/azure-ml-capstone/blob/main/screenshots/AutoML-%20Best%20Model.png)
 
+
 ## Hyperparameter Tuning
-*TODO*: What kind of model did you choose for this experiment and why? Give an overview of the types of parameters and their ranges used for the hyperparameter search
+The model used for hyperparameter tuning with HyperDrive is a Logistic Regression Model which is trained using a custom coded script- train.py. The dataset is fetched from a url as a TabularDataset. The hyperparameters chosen for the Scikit-learn model are regularization strength (C) and max iterations (max_iter). 
+
+```
+"--C": uniform(0.001, 100),
+"--max_iter": choice(50, 75, 100, 125, 150)
+```
+
+The hyperparameter tuning using HyperDrive requires several steps- Defining parameter search space, defining a sampling method, choosing a primary metric to optimize and selecting an early stopping policy.
+
+The parameter sampling method used for this project is Random Sampling. It randomly selects the best hyperparameters for the model, that way the entire search space does not need to be searched. The random sampling method saves on time and is a lot faster than grid sampling and bayesian sampling which are recommended only if you have budget to explore the entire search space.
+
+The early stopping policy used in this project is Bandit Policy which is based on a slack factor (0.1 in this case) and an evaluation interval (1 in this case). This policy terminates runs where the primary metric is not within the specified slack factor as compared to the best performing run. This would save on time and resources as runs which won't potentially lead to good results would be terminated early.
 
 
 ### Results
-*TODO*: What are the results you got with your model? What were the parameters of the model? How could you have improved it?
 
-*TODO* Remeber to provide screenshots of the `RunDetails` widget as well as a screenshot of the best model trained with it's parameters.
+**The details of the HyperDrive run are monitored using the Run Details widget.**
+
+![Run Details](https://github.com/neha7598/azure-ml-capstone/blob/main/screenshots/HyperDrive-%20Run%20Details.png)
+
+
+The best model obtained from the HyperDrive Experiment achieved an accuracy of **86.67%** The values of the hyperparameters selected for this model are shown below:
+
+![Best Model](https://github.com/neha7598/azure-ml-capstone/blob/main/screenshots/HyperDrive-%20Best%20Model.png)
+
 
 ## Model Deployment
-*TODO*: Give an overview of the deployed model and instructions on how to query the endpoint with a sample input.
+Since the model trained using AutomatedML achieved a higher accuracy (88.694%), it was chosen for deployment. 
+
+### Steps for Model Deployment
+
+#### Register the Model
+
+```
+description = 'AutoML Model trained on heart failure data to predict if death event occurs or not'
+tags = None
+model = remote_run.register_model(model_name = model_name, description = description, tags = tags)
+```
+
+
+#### Define an Entry Script
+
+The entry script receives data submitted to a deployed web service and passes it to the model. It then takes the response returned by the model and returns that to the client. For an AutoML model this script can be downloaded from files generated by the AutoML run. The following code snippet shows that.
+
+```
+script_file_name = 'inference/score.py'
+best_run.download_file('outputs/scoring_file_v_1_0_0.py', 'inference/score.py')
+```
+
+
+#### Define an Inference Configuration
+
+An inference configuration describes how to set up the web-service containing your model. It's used later, when you deploy the model.
+
+```
+inference_config = InferenceConfig(entry_script=script_file_name)
+```
+
+
+#### Define a Deployment Configuration
+
+```
+aciconfig = AciWebservice.deploy_configuration(cpu_cores = 1, 
+                                               memory_gb = 1, 
+                                               tags = {'area': "hfData", 'type': "automl_classification"}, 
+                                               description = 'Heart Failure Prediction')
+```
+
+
+#### Deploy the Model
+
+```
+aci_service = Model.deploy(ws, aci_service_name, [model], inference_config, aciconfig)
+```
+
+
+Once the model is deployed the model endpoint can be accessed from the Endpoints sections in the Assets Tab.
+
+![Model Endpoint](https://github.com/neha7598/azure-ml-capstone/blob/main/screenshots/Model%20Endpoint.png)
+
+
+The deployment state of the model can be seen as **Healthy** which indicates that the service is healthy and the endpoint is available.
+
+![Healthy State](https://github.com/neha7598/azure-ml-capstone/blob/main/screenshots/Deployment%20State-%20healthy.png)
+
+
 
 ## Screen Recording
 *TODO* Provide a link to a screen recording of the project in action. Remember that the screencast should demonstrate:
