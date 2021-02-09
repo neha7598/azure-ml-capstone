@@ -67,6 +67,16 @@ automl_settings = {
 The model trained using AutoML searched for several algorithms to find which would perform best in this particular use case, several algorithms including LogisticRegression, SVM, Random Forest, MinMaxScaler, MaxAbsScaler, XGBoostClassifier, VotingEnsemble, etc were explored. The algorithm that performed the best was VotingEnsemble with an accuracy of 0.88694. AutoML automatically selected the best hyperparameters for the model training. AutoML automatically selects the algorithm and associated hyperparameters, the sampling policy, as well as the early stopping policy. It also selects algorithms that are blacklisted or won't work in that particular case (TensorFlowLinearClassifier and TensorFlowDNN in this case)
 
 *TODO* Remeber to provide screenshots of the `RunDetails` widget as well as a screenshot of the best model trained with it's parameters.
+The details of the AutoML run can be monitored using the RunDetails Widget
+!(Run Details)[https://github.com/neha7598/azure-ml-capstone/blob/main/screenshots/AutoML-%20Run%20Details.png]
+
+Once the run has finished the summary of the run can be seen below- 
+!(Run Completed)[https://github.com/neha7598/azure-ml-capstone/blob/main/screenshots/AutoML-%20Run%20Summary.png]
+
+The best model details are shown below-
+!(Best Model details)[https://github.com/neha7598/azure-ml-capstone/blob/main/screenshots/AutoML-%20Best%20Model%20Summary.png]
+
+!(Best Model summary)[https://github.com/neha7598/azure-ml-capstone/blob/main/screenshots/AutoML-%20Best%20Model.png]
 
 ## Hyperparameter Tuning
 *TODO*: What kind of model did you choose for this experiment and why? Give an overview of the types of parameters and their ranges used for the hyperparameter search
