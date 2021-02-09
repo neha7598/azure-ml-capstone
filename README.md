@@ -68,15 +68,15 @@ The model trained using AutoML searched for several algorithms to find which wou
 
 *TODO* Remeber to provide screenshots of the `RunDetails` widget as well as a screenshot of the best model trained with it's parameters.
 The details of the AutoML run can be monitored using the RunDetails Widget
-!(Run Details)[https://github.com/neha7598/azure-ml-capstone/blob/main/screenshots/AutoML-%20Run%20Details.png]
+![Run Details](https://github.com/neha7598/azure-ml-capstone/blob/main/screenshots/AutoML-%20Run%20Details.png)
 
 Once the run has finished the summary of the run can be seen below- 
-!(Run Completed)[https://github.com/neha7598/azure-ml-capstone/blob/main/screenshots/AutoML-%20Run%20Summary.png]
+![Run Completed](https://github.com/neha7598/azure-ml-capstone/blob/main/screenshots/AutoML-%20Run%20Summary.png)
 
 The best model details are shown below-
-!(Best Model details)[https://github.com/neha7598/azure-ml-capstone/blob/main/screenshots/AutoML-%20Best%20Model%20Summary.png]
+![Best Model details](https://github.com/neha7598/azure-ml-capstone/blob/main/screenshots/AutoML-%20Best%20Model%20Summary.png)
 
-!(Best Model summary)[https://github.com/neha7598/azure-ml-capstone/blob/main/screenshots/AutoML-%20Best%20Model.png]
+![Best Model summary](https://github.com/neha7598/azure-ml-capstone/blob/main/screenshots/AutoML-%20Best%20Model.png)
 
 ## Hyperparameter Tuning
 *TODO*: What kind of model did you choose for this experiment and why? Give an overview of the types of parameters and their ranges used for the hyperparameter search
