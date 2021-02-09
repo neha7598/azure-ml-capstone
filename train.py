@@ -20,9 +20,9 @@ def main():
 
     # TODO: Create TabularDataset using TabularDatasetFactory
     # Data is located at:
-    # ""
+    # "https://raw.githubusercontent.com/neha7598/azure-ml-capstone/main/data/heart_failure_clinical_records_dataset.csv"
 
-    path_to_data=""
+    path_to_data="https://raw.githubusercontent.com/neha7598/azure-ml-capstone/main/data/heart_failure_clinical_records_dataset.csv"
     ds = TabularDatasetFactory.from_delimited_files(path=path_to_data)
 
     data = ds.to_pandas_dataframe()
