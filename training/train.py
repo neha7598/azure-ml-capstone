@@ -18,7 +18,7 @@ def main():
 
     args = parser.parse_args()
 
-    # TODO: Create TabularDataset using TabularDatasetFactory
+    # Create TabularDataset using TabularDatasetFactory
     # Data is located at:
     # "https://raw.githubusercontent.com/neha7598/azure-ml-capstone/main/data/heart_failure_clinical_records_dataset.csv"
 
@@ -29,7 +29,7 @@ def main():
     x=data.drop('DEATH_EVENT',axis=1)
     y=data['DEATH_EVENT']
 
-    # TODO: Split data into train and test sets.
+    # Split data into train and test sets.
 
     x_train, x_test, y_train, y_test= train_test_split(x, y, test_size=0.20)
 
