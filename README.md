@@ -1,7 +1,13 @@
 
 # Capstone Project- Machine Learning Engineer with Microsoft Azure
 
-This project has been submitted as part of the Machine Learning Engineer with Microsoft Azure Nanodegree. The aim of the project is to train models using Automated Machine Learning as well as by tuning hyperparameters with Hyperdrive. The best performing model is then deployed as a web service and is interacted with. The following chart highlights all the steps performed.
+This project has been submitted as part of the Machine Learning Engineer with Microsoft Azure Nanodegree. The aim of the project is to train models using Automated Machine Learning as well as by tuning hyperparameters with Hyperdrive. The best performing model is then deployed as a web service and is interacted with. The following diagrams highlight the architectures of both the HyperDrive run as well as the AutoML Run.
+
+### HyperDrive Run Architecture
+![HyperDrive Architecture](screenshots/HyperDrive_Architecture.png)
+
+### AutoML Run Architecture
+![AutoML Architecture](screenshots/Automl_Architecture.png)
 
 ## Dataset
 
@@ -73,6 +79,24 @@ automl_settings = {
 
 ### Results
 The model trained using AutoML searched for several algorithms to find which would perform best in this particular use case, several algorithms including LogisticRegression, SVM, Random Forest, MinMaxScaler, MaxAbsScaler, XGBoostClassifier, VotingEnsemble, etc were explored. The algorithm that performed the best was VotingEnsemble with an accuracy of **0.88694**. AutoML automatically selected the best hyperparameters for the model training. AutoML automatically selects the algorithm and associated hyperparameters, the sampling policy, as well as the early stopping policy. It also selects algorithms that are blacklisted or won't work in that particular case (TensorFlowLinearClassifier and TensorFlowDNN in this case)
+
+The following parameters were generated for the VotingEnsemble Model: 
+
+| Parameter        | Value          | 
+| :----- |:-----:| 
+| random_state | 0 |
+| reg_alpha | 2.0833333333333335 |
+| reg_lambda | 1.7708333333333335 |
+| scale_pos_weight | 1 |
+| seed | None |
+| silent | None |
+| subsample | 0.9 |
+| tree_method | 'hist' |
+| verbose | -10 |
+| verbosity | 0 |
+
+The generated weights were- 0.2857142857142857, 0.14285714285714285, 0.14285714285714285, 0.2857142857142857, 0.14285714285714285
+
 
 **The details of the AutoML run can be monitored using the RunDetails Widget**
 
@@ -263,4 +287,4 @@ The screen recording with the project walkthrough can be seen [here](https://you
 ## Future Improvements
 Some areas of improvement for future experiments using HyperDrive include selecting different sampling methods and early_stopping policies as well as increasing the number of total runs. Selecting a different sampling method like Grid Sampling (as opposed to Random Sampling in this case) can lead to a more exhaustive search of the search space which can potentially give us a better result. Also, instead of Logistic Regression, the use of other algorithms like Random Fores, XGBoost, etc can be explored.
 
-For AutoML, future experiments can explore having a experiment timeout time of more than 30 minutes, this can lead to a more exhaustive search and potentially better results.
+For AutoML, future experiments can explore having a experiment timeout time of more than 30 minutes, this can lead to a more exhaustive search and potentially better results. We can also select a different primary metric like "AUC_weighted" which is more suitable for datasets with large class imbalance.
