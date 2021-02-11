@@ -50,13 +50,6 @@ The AutomatedML Run was created using an instance of AutoMLConfig. The AutoML Co
 | verbosity | logging.INFO   | This specifies the verbosity level for writing to the log file |
 
 
-- The Experiment Type- the task parameter is used to specify the experiment type
-- Data source- The training data is specified. The data should be in tabular format.
-- Label Column Name- The label column which is 'DEATH_EVENT' is specified
-- Number of cross validations- The number of cross valdations to be performed in this case has been specified as 4
-- Compute Target
-- AutoML settings
-
 ```
 automl_config = AutoMLConfig(
     task='classification',
@@ -86,7 +79,7 @@ The model trained using AutoML searched for several algorithms to find which wou
 ![Run Details](https://github.com/neha7598/azure-ml-capstone/blob/main/screenshots/AutoML-%20Run%20Details.png)
 
 
-**Once the run has finished the summary of the run can be seen below-**
+**Once the run was finished the summary of the run can be seen below-**
 
 ![Run Completed](https://github.com/neha7598/azure-ml-capstone/blob/main/screenshots/AutoML-%20Run%20Summary.png)
 
@@ -114,6 +107,13 @@ The early stopping policy used in this project is Bandit Policy which is based o
 
 
 ### Results
+The best HyperDrive run achieved an accuracy of **86.67%**. The hyperparameters selected for the best HyperDrive run are listed below- 
+
+| Parameter        | Value          | 
+| :----- |:-----:| 
+| Regularization Strength (C) | 85.35037 |
+| Max iterations (max_iter) | 75 |
+
 
 **The details of the HyperDrive run are monitored using the Run Details widget.**
 
@@ -259,3 +259,8 @@ The requests being sent to the model can be monitored through the Application In
 ## Screen Recording
 The screen recording with the project walkthrough can be seen [here](https://youtu.be/OUlqEsqebtE)
 
+
+## Future Improvements
+Some areas of improvement for future experiments using HyperDrive include selecting different sampling methods and early_stopping policies as well as increasing the number of total runs. Selecting a different sampling method like Grid Sampling (as opposed to Random Sampling in this case) can lead to a more exhaustive search of the search space which can potentially give us a better result. Also, instead of Logistic Regression, the use of other algorithms like Random Fores, XGBoost, etc can be explored.
+
+For AutoML, future experiments can explore having a experiment timeout time of more than 30 minutes, this can lead to a more exhaustive search and potentially better results.
