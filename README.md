@@ -78,7 +78,7 @@ automl_settings = {
 
 
 ### Results
-The model trained using AutoML searched for several algorithms to find which would perform best in this particular use case, several algorithms including LogisticRegression, SVM, Random Forest, MinMaxScaler, MaxAbsScaler, XGBoostClassifier, VotingEnsemble, etc were explored. The algorithm that performed the best was VotingEnsemble with an accuracy of **0.88694**. AutoML automatically selected the best hyperparameters for the model training. AutoML automatically selects the algorithm and associated hyperparameters, the sampling policy, as well as the early stopping policy. It also selects algorithms that are blacklisted or won't work in that particular case (TensorFlowLinearClassifier and TensorFlowDNN in this case)
+The model trained using AutoML searched for several algorithms to find which would perform best in this particular use case, several algorithms including LogisticRegression, SVM, Random Forest, MinMaxScaler, MaxAbsScaler, XGBoostClassifier, VotingEnsemble, etc were explored. The algorithm that performed the best was VotingEnsemble with an accuracy of **0.88701**. AutoML automatically selected the best hyperparameters for the model training. AutoML automatically selects the algorithm and associated hyperparameters, the sampling policy, as well as the early stopping policy. It also selects algorithms that are blacklisted or won't work in that particular case (TensorFlowLinearClassifier and TensorFlowDNN in this case)
 
 The following parameters were generated for the VotingEnsemble Model: 
 
@@ -100,19 +100,19 @@ The generated weights were- 0.2857142857142857, 0.14285714285714285, 0.142857142
 
 **The details of the AutoML run can be monitored using the RunDetails Widget**
 
-![Run Details](https://github.com/neha7598/azure-ml-capstone/blob/main/screenshots/AutoML-%20Run%20Details.png)
+![Run Details](screenshots/AutoML_Run_Details.png)
 
 
 **Once the run was finished the summary of the run can be seen below-**
 
-![Run Completed](https://github.com/neha7598/azure-ml-capstone/blob/main/screenshots/AutoML-%20Run%20Summary.png)
+![Run Completed](screenshots/AutoML_Run_Summary.png)
 
 
 **The best model details are shown below-**
 
-![Best Model details](https://github.com/neha7598/azure-ml-capstone/blob/main/screenshots/AutoML-%20Best%20Model%20Summary.png)
+![Best Model details](screenshots/AutoML_Best_Model_Summary.png)
 
-![Best Model summary](https://github.com/neha7598/azure-ml-capstone/blob/main/screenshots/AutoML-%20Best%20Model.png)
+![Best Model summary](screenshots/AutoML_Best_Model.png)
 
 
 ## Hyperparameter Tuning
@@ -141,12 +141,12 @@ The best HyperDrive run achieved an accuracy of **86.67%**. The hyperparameters 
 
 **The details of the HyperDrive run are monitored using the Run Details widget.**
 
-![Run Details](https://github.com/neha7598/azure-ml-capstone/blob/main/screenshots/HyperDrive-%20Run%20Details.png)
+![Run Details](screenshots/HyperDrive_Run_Details.png)
 
 
 The best model obtained from the HyperDrive Experiment achieved an accuracy of **86.67%** The values of the hyperparameters selected for this model are shown below:
 
-![Best Model](https://github.com/neha7598/azure-ml-capstone/blob/main/screenshots/HyperDrive-%20Best%20Model.png)
+![Best Model](screenshots/HyperDrive_Best_Model.png)
 
 
 ## Model Deployment
@@ -201,20 +201,20 @@ aci_service = Model.deploy(ws, aci_service_name, [model], inference_config, acic
 
 Once the model is deployed the model endpoint can be accessed from the Endpoints sections in the Assets Tab.
 
-![Model Endpoint](https://github.com/neha7598/azure-ml-capstone/blob/main/screenshots/Model%20Endpoint.png)
+![Model Endpoint](screenshots/Model_Endpoint.png)
 
 
 The deployment state of the model can be seen as **Healthy** which indicates that the service is healthy and the endpoint is available.
 
-![Healthy State](https://github.com/neha7598/azure-ml-capstone/blob/main/screenshots/Deployment%20State-%20healthy.png)
+![Healthy State](screenshots/Deployment_State_healthy.png)
 
 
 Once the model has been deployed, requests were sent to the model. For sending requests to the model the scoring uri as well as the primary key (if authentication is enabled) are required. A post request is created and the format of the data that is needed to be sent can be inferred from the swagger documentation:
 
-![Swagger Documentation](https://github.com/neha7598/azure-ml-capstone/blob/main/screenshots/Sample%20Request.png)
+![Swagger Documentation](screenshots/Sample_Request.png)
 
 
-The following code interacts with the deployed model by sending it 2 data points specified here and in the [data.json](https://github.com/neha7598/azure-ml-capstone/blob/main/data.json) file.
+The following code interacts with the deployed model by sending it 2 data points specified here and in the [data.json](main/data.json) file.
 
 ```
 import json
@@ -273,11 +273,11 @@ print(resp.json())
 
 **The result obtained from the deployed service is- **
 
-![Result](https://github.com/neha7598/azure-ml-capstone/blob/main/screenshots/Result.png)
+![Result](screenshots/Result.png)
 
 The requests being sent to the model can be monitored through the Application Insights URL (If Application Insights are enabled) along with failed requests, time taken per request as well as the availability of the deployed service.
 
-![Application Insights](https://github.com/neha7598/azure-ml-capstone/blob/main/screenshots/Application%20Insights.png)
+![Application Insights](screenshots/Application_Insights.png)
 
 
 ## Screen Recording
