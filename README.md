@@ -150,7 +150,7 @@ The best model obtained from the HyperDrive Experiment achieved an accuracy of *
 
 
 ## Model Deployment
-Since the model trained using AutomatedML achieved a higher accuracy (88.694%), it was chosen for deployment. 
+Since the model trained using AutomatedML achieved a higher accuracy (88.701%), it was chosen for deployment. 
 
 ### Steps for Model Deployment
 
