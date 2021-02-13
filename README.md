@@ -280,9 +280,6 @@ The requests being sent to the model can be monitored through the Application In
 ![Application Insights](screenshots/Application_Insights.png)
 
 
-## Screen Recording
-The screen recording with the project walkthrough can be seen [here](https://youtu.be/OUlqEsqebtE)
-
 
 ## Future Improvements
 Some areas of improvement for future experiments using HyperDrive include selecting different sampling methods and early_stopping policies as well as increasing the number of total runs. Selecting a different sampling method like Grid Sampling (as opposed to Random Sampling in this case) can lead to a more exhaustive search of the search space which can potentially give us a better result. Also, instead of Logistic Regression, the use of other algorithms like Random Fores, XGBoost, etc can be explored.
